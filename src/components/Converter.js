@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import './Converter.css'
 
 export default class Converter extends Component {
 
@@ -15,15 +15,16 @@ export default class Converter extends Component {
 
     toConvert(){
         
-        let from_to = `${this.props.currencyA}_${this.props.currencyB}`
-        let url = `https://free.currencyconverterapi.com/apt/v5/convert?q=${from_to}&compact=y`
+        let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
+        const key = '8a7343caecfd280dc6ba'
+        let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
 
         fetch(url).then(res=>{
 
             return res.json()
         })
         .then(json=> {
-            let quotation = json[from_to].val
+            let quotation = json[from_to]
             let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
             this.setState({currencyB_value})
         })
@@ -35,11 +36,12 @@ export default class Converter extends Component {
     render() {
         return (
             <div className="converter">
-                <h2>{this.props.currencyA} para {this.props.currencyB}</h2>
+                <h2>{this.props.currencyA} to {this.props.currencyB}</h2>
                 <input type="text"
                     onChange={(event) =>{this.setState({currencyA_value:event.target.value})}}></input>
                 <input type="button" value="Convert" onClick={this.toConvert}></input>
                 <h2>{this.state.currencyB_value}</h2>
+                {console.log(this.state.currencyB_value)}
             </div>
         )
     }

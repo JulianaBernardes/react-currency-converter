@@ -1,0 +1,20 @@
+
+.converter {
+    padding:20px;
+    max-width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.356);
+    border-radius: 10px;
+    background-color:aliceblue;
+}
+
+
+input[Type="button"]{
+    text-align: center;
+    background-color: #bdc3c7;
+    font-size: 15px;
+    font-weight: 200px;
+}
+
+input[Type="button"]:hover {
+    background-color: #ffffff;
+}
