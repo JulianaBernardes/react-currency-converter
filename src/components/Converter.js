@@ -19,11 +19,10 @@ export default class Converter extends Component {
         const url = `/.netlify/functions/currency?from_to=${from_to}`;
 
         fetch(url).then(res=>{
-
             return res.json()
         })
         .then(json=> {
-            let quotation = json[from_to]
+            let quotation = json[from_to].value
             let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
             this.setState({currencyB_value})
         })
