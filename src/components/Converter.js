@@ -22,7 +22,7 @@ export default class Converter extends Component {
             return res.json()
         })
         .then(json=> {
-            let quotation = json[from_to].value
+            let quotation = json[from_to].val
             let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
             this.setState({currencyB_value})
         })
