@@ -35,7 +35,7 @@ export default class Converter extends Component {
                 <h2>{this.props.currencyA} to {this.props.currencyB}</h2>
                 <input type="text"
                     onChange={(event) =>{this.setState({currencyA_value:event.target.value})}}></input>
-                <button type="button" value="Convert" onClick={this.toConvert}></button>
+                <button type="button" onClick={this.toConvert}>Covert</button>
                 <h2>{this.state.currencyB_value}</h2>
                 {console.log(this.state.currencyB_value)}
             </div>
