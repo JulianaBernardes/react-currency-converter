@@ -16,7 +16,7 @@ export default class Converter extends Component {
     toConvert(){
         
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        const key = '8a7343caecfd280dc6ba'
+        const key = process.env.REACT_APP_API_KEY
         let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
 
         fetch(url).then(res=>{
