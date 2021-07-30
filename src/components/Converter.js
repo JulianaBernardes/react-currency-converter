@@ -15,12 +15,8 @@ export default class Converter extends Component {
 
     toConvert(){
         
-        // let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        // const url = `/.netlify/functions/currency?from_to=${from_to}`;
-
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        const key = '8a7343caecfd280dc6ba'
-        let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
+        const url = `/.netlify/functions/currency?from_to=${from_to}`;
 
         fetch(url).then(res=>{
             return res.json()
