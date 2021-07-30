@@ -15,15 +15,15 @@ export default class Converter extends Component {
 
     toConvert(){
         
-        let from_to_convert = `${this.props.currencyA}_${this.props.currencyB}`;
-        const url = `/.netlify/functions/currency?from_to=${from_to_convert}`;
+        let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
+        const url = `/.netlify/functions/currency?from_to=${from_to}`;
 
         fetch(url).then(res=>{
 
             return res.json()
         })
         .then(json=> {
-            let quotation = json[from_to_convert]
+            let quotation = json[from_to]
             let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
             this.setState({currencyB_value})
         })
