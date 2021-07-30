@@ -15,14 +15,14 @@ export default class Converter extends Component {
 
     toConvert(){
         
+        const key = process.env.REACT_APP_API_KEY
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        const url = `/.netlify/functions/currency?from_to=${from_to}`;
+        let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
 
         fetch(url).then(res=>{
             return res.json()
         })
         .then(json=> {
-            console.log(json[from_to])
             let quotation = json[from_to]
             let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
             this.setState({currencyB_value})
