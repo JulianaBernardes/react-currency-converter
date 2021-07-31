@@ -17,10 +17,15 @@ export default class Converter extends Component {
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
         const urlQuotationAPI = `../.netlify/functions/quotation?from_to=${from_to}`;
         try {
-            const quotation = await fetch(urlQuotationAPI).then((res) => res.json());
+            fetch(urlQuotationAPI)
+                .then((res) => res.json())
+                .then(json =>{
+                    let quotation = json[from_to]
+                    console.log("Quotation" + from_to + ": " + quotation)
+                    let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
+                    this.setState({currencyB_value})
+                })
             
-            let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
-            this.setState({currencyB_value})
 
         }catch(err){
             console.log(err)
