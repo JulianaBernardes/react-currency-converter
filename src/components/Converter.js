@@ -15,7 +15,7 @@ export default class Converter extends Component {
 
     async toConvert(){
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        const urlQuotationAPI = `/.netlify/functions/quotation?from_to=${from_to}`;
+        const urlQuotationAPI = `./netlify/functions/quotation?from_to=${from_to}`;
         try {
             const quotation = await fetch(urlQuotationAPI).then((res) => res.json());
             console.log("Quotation " + quotation)
