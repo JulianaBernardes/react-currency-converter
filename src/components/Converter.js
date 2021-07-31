@@ -15,19 +15,26 @@ export default class Converter extends Component {
 
     toConvert(){
         
-        const key = process.env.REACT_APP_API_KEY
+        //const key = process.env.REACT_APP_API_KEY
+        //let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
         let from_to = `${this.props.currencyA}_${this.props.currencyB}`;
-        let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
-
-        fetch(url).then(res=>{
-            return res.json()
-        })
-        .then(json=> {
-            let quotation = json[from_to]
-            let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
-            this.setState({currencyB_value})
-        })
-
+        
+        // fetch(url).then(res=>{
+            //     return res.json()
+            // })
+            // .then(json=> {
+                //     let quotation = json[from_to]
+                //     let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
+                //     this.setState({currencyB_value})
+                // })
+                
+                //let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
+                
+                    
+                const quotationAPI = `/.netlify/functions/quotation?from_to=${from_to}`;
+                let quotation = quotationAPI
+                let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
+                this.setState({currencyB_value})
     }
 
     render() {
