@@ -4,13 +4,13 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 exports.handler = async function(event, context) {
   try {
-    const { from_to } = event.queryStringParameters || {};
+    const from_to = event.queryStringParameters || {};
     if (!from_to) {
       return { statusCode: 400, body: "Missing query parameters" };
     }
     let uri = `https://free.currconv.com/api/v7/convert?q=${from_to}`
     let url = `${uri}&compact=ultra&apiKey=${apiKey}`
-    console.log(url)
+    console.log("URL COMPLETA" + url)
     const response = await fetch(url);
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
