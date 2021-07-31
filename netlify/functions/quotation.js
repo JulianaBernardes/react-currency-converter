@@ -4,7 +4,7 @@ const apiKey = process.env.REACT_APP_API_KEY;
 
 exports.handler = async function(event, context) {
   try {
-    const from_to = event.queryStringParameters || {};
+    const {from_to} = event.queryStringParameters || {};
     if (!from_to) {
       return { statusCode: 400, body: "Missing query parameters" };
     }
