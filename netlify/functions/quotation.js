@@ -10,7 +10,6 @@ exports.handler = async function(event, context) {
     }
     let uri = `https://free.currconv.com/api/v7/convert?q=${from_to}`
     let url = `${uri}&compact=ultra&apiKey=${apiKey}`
-    console.log("URL COMPLETA" + url)
     const response = await fetch(url);
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
