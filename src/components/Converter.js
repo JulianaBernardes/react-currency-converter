@@ -13,7 +13,7 @@ export default class Converter extends Component {
         this.toConvert = this.toConvert.bind(this)
     }
 
-    toConvert(){
+    async toConvert(){
         
         //const key = process.env.REACT_APP_API_KEY
         //let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
@@ -31,10 +31,17 @@ export default class Converter extends Component {
                 //let url = `https://free.currconv.com/api/v7/convert?q=${from_to}&compact=ultra&apiKey=${key}`
                 
                     
-                const quotationAPI = `/.netlify/functions/quotation?from_to=${from_to}`;
-                let quotation = quotationAPI
-                let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
-                this.setState({currencyB_value})
+                const urlQuotationAPI = `/.netlify/functions/quotation?from_to=${from_to}`;
+                try {
+                    const quotation = await fetch(urlQuotationAPI).then((res) => res.json());
+                    console.log("Quotation " + quotation)
+                    let currencyB_value = (parseFloat(this.state.currencyA_value) * quotation).toFixed(2)
+                    this.setState({currencyB_value})
+
+                }catch(err){
+                    console.log(err)
+                }
+
     }
 
     render() {
@@ -45,7 +52,6 @@ export default class Converter extends Component {
                     onChange={(event) =>{this.setState({currencyA_value:event.target.value})}}></input>
                 <button type="button" onClick={this.toConvert}>Convert</button>
                 <h2>{this.state.currencyB_value}</h2>
-                {console.log(this.state.currencyB_value)}
             </div>
         )
     }
