@@ -8,10 +8,10 @@ exports.handler = async function(event, context) {
     if (!from_to) {
       return { statusCode: 400, body: "Missing query parameters" };
     }
-    //const uri = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}`;
     let uri = `https://free.currconv.com/api/v7/convert?q=${from_to}`
-
-    const response = await fetch(`${uri}&compact=ultra&apiKey=${apiKey}`);
+    let url = `${uri}&compact=ultra&apiKey=${apiKey}`
+    console.log(url)
+    const response = await fetch(url);
     if (!response.ok) {
       // NOT res.status >= 200 && res.status < 300
       return { statusCode: response.status, body: response.statusText };
